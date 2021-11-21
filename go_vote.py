@@ -36,12 +36,16 @@ class GoVote():
 
 		# somestring.isdigit() to check if a string, e.g., '100' is a number.
 
+        # create a list for lower case string
         lower_case_votes = []
         for item in votes:
+            # check if the element is string
             if isinstance(item, str):
+                # check if the string is a number
                 if not item.isdigit():
                     lower_case_votes.append(item.lower())          
-            
+        
+        # return lower case list    
         return lower_case_votes
     
 
@@ -63,8 +67,10 @@ class GoVote():
         # create a dictionary
         votes_dictionary = {}
         for item in votes:
+            # add to a dictionary with an empty list
             votes_dictionary[item] = []
-            
+        
+        # return a dictionary    
         return votes_dictionary
 
 
@@ -90,8 +96,9 @@ class GoVote():
 
 		# insert code here
         for item in votes:
+            # add item to dictionary every there is that item
             votes_dictionary[item].append(item)
-
+        # return the dictionary
         return votes_dictionary
 
 
@@ -112,13 +119,15 @@ class GoVote():
         '''
 
         # inser code here
+        # ceate variable to find a person with the most vote
         count = 0
         name = None
-        for a, b in ballot.items():
-            if len(b) > count:
-                count = len(b)
-                name = a
-                
+        for person, list in ballot.items():
+            # if the length of the list is more than count
+            if len(list) > count:
+                count = len(list)
+                name = person
+        # return count and name        
         return (count, name)
 
 
