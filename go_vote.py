@@ -1,3 +1,4 @@
+from datetime import datetime
 # write a program to count votes.
 
 class GoVote():
@@ -67,8 +68,9 @@ class GoVote():
         # create a dictionary
         votes_dictionary = {}
         for item in votes:
-            # add to a dictionary with an empty list
-            votes_dictionary[item] = []
+            if item not in votes_dictionary.keys():
+                # add to a dictionary with an empty list
+                votes_dictionary[item] = []
         
         # return a dictionary    
         return votes_dictionary
@@ -121,7 +123,7 @@ class GoVote():
         # inser code here
         # ceate variable to find a person with the most vote
         count = 0
-        name = None
+        name = ""
         for person, list in ballot.items():
             # if the length of the list is more than count
             if len(list) > count:
@@ -132,9 +134,21 @@ class GoVote():
 
 
 # write a decorator called debbuger that will output the current time the function was executed (using datetime library) and the name of the function executed using __name__ inside function (variable is defined by default by python).
+def debbuger(func):
+    #function to find the current time
+    def wrapper():
+        start_time = datetime.now()
+        print(f'The current time the function was executed: {start_time}')
+        func()
+        end_time = datetime.now()
+        print(f'The current time the fuction was finished: {end_time}')
+        total_time = end_time - start_time
+        print(f'The total running time is milliseconds: {total_time.total_seconds()*1000}')
+    # return wrapper
+    return wrapper
 
 
-
+@debbuger
 def voting():
 
 
